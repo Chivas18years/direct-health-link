@@ -1,4 +1,5 @@
 import { Heart } from "lucide-react";
+import logoUnimed from "@/assets/logo-unimed.png";
 
 const Footer = () => {
   return (
@@ -6,13 +7,12 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-gradient-hero flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">U</span>
-            </div>
-            <span className="font-bold text-lg text-foreground">
-              Unimed<span className="text-primary">Click</span>
-            </span>
+          <div className="flex items-center">
+            <img
+              src={logoUnimed}
+              alt="Unimed Click"
+              className="h-8 md:h-10 w-auto"
+            />
           </div>
 
           {/* Copyright */}
