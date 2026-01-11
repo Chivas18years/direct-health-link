@@ -2,6 +2,7 @@ import { Menu, X, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
+import logoUnimed from "@/assets/logo-unimed.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,13 +32,12 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#inicio" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-gradient-hero flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-lg">U</span>
-            </div>
-            <span className="font-bold text-xl text-foreground hidden sm:block">
-              Unimed<span className="text-primary">Click</span>
-            </span>
+          <a href="#inicio" className="flex items-center">
+            <img 
+              src={logoUnimed} 
+              alt="Unimed Click" 
+              className="h-10 md:h-12 w-auto"
+            />
           </a>
 
           {/* Desktop Navigation */}
