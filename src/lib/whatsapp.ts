@@ -1,5 +1,5 @@
 // WhatsApp Configuration
-export const WHATSAPP_NUMBER = "5511999999999"; // Substitua pelo número real
+export const WHATSAPP_NUMBER = "5511961408162"; // Substitua pelo número real
 
 export interface WhatsAppMessage {
   action: string;
