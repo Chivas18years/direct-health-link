@@ -1,10 +1,19 @@
 import { Menu, X, Phone } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { label: "Início", href: "#inicio" },
@@ -14,7 +23,11 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-md border-b border-border">
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      isScrolled 
+        ? "bg-card/80 backdrop-blur-xl shadow-lg border-b border-border/50" 
+        : "bg-card/95 backdrop-blur-md border-b border-border"
+    }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}

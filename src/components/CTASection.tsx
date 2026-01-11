@@ -1,12 +1,20 @@
 import { MessageCircle, ArrowRight } from "lucide-react";
 import { openWhatsApp } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const CTASection = () => {
+  const { ref, isVisible } = useScrollAnimation();
+
   return (
     <section id="contato" className="py-16 md:py-24">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto bg-gradient-hero rounded-3xl p-8 md:p-12 text-center relative overflow-hidden">
+        <div 
+          ref={ref}
+          className={`max-w-4xl mx-auto bg-gradient-hero rounded-3xl p-8 md:p-12 text-center relative overflow-hidden transition-all duration-700 ${
+            isVisible ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
+          }`}
+        >
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-1/2 -translate-y-1/2" />
