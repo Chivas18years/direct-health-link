@@ -1,0 +1,96 @@
+import { Menu, X, Phone } from "lucide-react";
+import { useState } from "react";
+import { openWhatsApp } from "@/lib/whatsapp";
+import { Button } from "@/components/ui/button";
+
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: "Início", href: "#inicio" },
+    { label: "Serviços", href: "#servicos" },
+    { label: "Sobre", href: "#sobre" },
+    { label: "Contato", href: "#contato" },
+  ];
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-40 bg-card/95 backdrop-blur-md border-b border-border">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <a href="#inicio" className="flex items-center gap-2">
+            <div className="w-10 h-10 rounded-lg bg-gradient-hero flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">U</span>
+            </div>
+            <span className="font-bold text-xl text-foreground hidden sm:block">
+              Unimed<span className="text-primary">Click</span>
+            </span>
+          </a>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-muted-foreground hover:text-primary font-medium transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* CTA Button - Desktop */}
+          <div className="hidden md:block">
+            <Button
+              onClick={() => openWhatsApp("default")}
+              className="btn-whatsapp flex items-center gap-2"
+            >
+              <Phone className="w-4 h-4" />
+              Fale Conosco
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <nav className="md:hidden py-4 border-t border-border animate-fade-up">
+            <div className="flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="text-muted-foreground hover:text-primary hover:bg-muted px-4 py-3 rounded-lg font-medium transition-colors duration-200"
+                >
+                  {link.label}
+                </a>
+              ))}
+              <Button
+                onClick={() => {
+                  openWhatsApp("default");
+                  setIsMenuOpen(false);
+                }}
+                className="btn-whatsapp mt-2 flex items-center justify-center gap-2"
+              >
+                <Phone className="w-4 h-4" />
+                Fale Conosco
+              </Button>
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
