@@ -1,6 +1,7 @@
 import { Search, FlaskConical, FileText, Stethoscope, ShieldCheck } from "lucide-react";
 import ActionCard from "./ActionCard";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import heroBackground from "@/assets/hero-background.png";
 
 const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation(0.05);
@@ -33,8 +34,14 @@ const HeroSection = () => {
   ];
 
   return (
-    <section id="inicio" className="pt-24 md:pt-32 pb-16 md:pb-24">
-      <div className="container mx-auto px-4">
+    <section 
+      id="inicio" 
+      className="pt-24 md:pt-32 pb-16 md:pb-24 min-h-screen relative bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${heroBackground})` }}
+    >
+      {/* Overlay para legibilidade */}
+      <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+      <div className="container mx-auto px-4 relative z-10">
         {/* Hero Content */}
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4 md:mb-6 animate-fade-up leading-tight">
