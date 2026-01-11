@@ -1,7 +1,10 @@
 import { Search, FlaskConical, FileText, Stethoscope, ShieldCheck } from "lucide-react";
 import ActionCard from "./ActionCard";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const HeroSection = () => {
+  const { ref, isVisible } = useScrollAnimation(0.05);
+
   const actions = [
     {
       icon: FlaskConical,
@@ -55,16 +58,27 @@ const HeroSection = () => {
         </div>
 
         {/* Action Cards Grid */}
-        <div id="servicos" className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
+        <div 
+          ref={ref}
+          id="servicos" 
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto"
+        >
           {actions.map((action, index) => (
-            <ActionCard
+            <div
               key={action.action}
-              icon={action.icon}
-              title={action.title}
-              description={action.description}
-              action={action.action}
-              delay={index}
-            />
+              className={`transition-all duration-500 ${
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <ActionCard
+                icon={action.icon}
+                title={action.title}
+                description={action.description}
+                action={action.action}
+                delay={index}
+              />
+            </div>
           ))}
         </div>
       </div>
