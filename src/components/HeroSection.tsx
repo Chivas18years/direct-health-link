@@ -40,7 +40,7 @@ const HeroSection = () => {
       style={{ backgroundImage: `url(${heroBackground})` }}
     >
       {/* Overlay para legibilidade */}
-      <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-white/40" />
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Content */}
         <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
